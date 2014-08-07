@@ -2,9 +2,9 @@
 
 [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
 
-A WebGL implementation of Fast Approximate Anti-Aliasing (FXAA). This is a screen-space technique.
+A WebGL implementation of Fast Approximate Anti-Aliasing (FXAA). This is a screen-space technique. The code was originally from [Geeks3D.com](http://www.geeks3d.com/20110405/fxaa-fast-approximate-anti-aliasing-demo-glsl-opengl-test-radeon-geforce/) and cleaned up by [Armin Ronacher](https://github.com/mitsuhiko/webgl-meincraft) for WebGL.
 
-It's particularly useful for WebGL since most browsers do not currently support MSAA, and even those that do (e.g. Chrome) will not support it outside of the main frame buffer (which is common when doing post-processing effects like color grading).
+It's particularly useful in WebGL since most browsers do not currently support MSAA, and even those that do (e.g. Chrome) will not support it outside of the main frame buffer (which is common when doing post-processing effects like color grading).
 
 ## Usage
 
@@ -13,7 +13,6 @@ It's particularly useful for WebGL since most browsers do not currently support 
 #### ```vec4 fxaa(sampler2D tex, vec2 fragCoord, vec2 resolution)```
 
 Returns the anti-aliased color from your frame texture. 
-
 
 Inside GLSL fragment shader:
 
@@ -29,6 +28,8 @@ void main() {
 ```
 
 ### optimizing
+
+If you plan on using FXAA, you may want to disable native anti-aliasing entirely when creating your WebGL context, as it will lead to a performance boost in some browsers. If you are relying on FXAA for anti-aliasing your post-processed scene, then you probably won't be getting native anti-aliasing anyways. 
 
 The above FXAA shader uses 9 dependent texture reads. For various mobile GPUs (particularly iOS), we can optimize the shader by making 5 of the texture2D calls non-dependent. To do this, the coordinates have to be computed in the vertex shader and passed along:
 
