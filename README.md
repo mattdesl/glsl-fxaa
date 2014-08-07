@@ -2,9 +2,9 @@
 
 [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
 
-A WebGL implementation of Fast Approximate Anti-Aliasing (FXAA). This is a screen-space technique. The code was originally from [Geeks3D.com](http://www.geeks3d.com/20110405/fxaa-fast-approximate-anti-aliasing-demo-glsl-opengl-test-radeon-geforce/) and cleaned up by [Armin Ronacher](https://github.com/mitsuhiko/webgl-meincraft) for WebGL.
+A WebGL implementation of Fast Approximate Anti-Aliasing (FXAA). This is a screen-space technique. The code was originally from [Geeks3D.com](http://www.geeks3d.com/20110405/fxaa-fast-approximate-anti-aliasing-demo-glsl-opengl-test-radeon-geforce/) and cleaned up by [Armin Ronacher](https://github.com/mitsuhiko/webgl-meincraft) for WebGL. This is roughly version 2 of FXAA.
 
-It's particularly useful in WebGL since most browsers do not currently support MSAA, and even those that do (e.g. Chrome) will not support it outside of the main frame buffer (which is common when doing post-processing effects like color grading).
+FXAA is particularly useful in WebGL since most browsers do not currently support MSAA, and even those that do (e.g. Chrome) will not support it outside of the main frame buffer (which is common when doing post-processing effects like color grading).
 
 ## Usage
 
