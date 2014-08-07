@@ -24,6 +24,8 @@ void main() {
 }
 ```
 
+### api
+
 ```fxaa(sampler2D tex, vec2 fragCoord, vec2 resolution)```
 
 
