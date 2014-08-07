@@ -1,0 +1,66 @@
+{
+  "name": "glsl-fxaa",
+  "version": "1.0.0",
+  "description": "FXAA implementation for glslify in WebGL",
+  "main": "index.glsl",
+  "license": "MIT",
+  "author": "Matt DesLauriers <dave.des@gmail.com>",
+  "dependencies": {
+    "glslify": "^1.6.0"
+  },
+  "devDependencies": {
+    "add-event-listener": "0.0.1",
+    "baboon-image": "^1.0.0",
+    "dom-style": "0.0.2",
+    "domready": "^1.0.5",
+    "gl-clear": "0.0.1",
+    "kami-batch": "^2.0.4",
+    "kami-shader": "^1.1.0",
+    "kami-texture": "^1.1.0",
+    "tape": "~2.13.2",
+    "webgl-context": "^1.2.1"
+  },
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "testling": {
+    "files": "test.js",
+    "browsers": [
+      "ie/6..latest",
+      "chrome/22..latest",
+      "firefox/16..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6",
+      "android-browser/latest"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattdesl/glsl-fxaa.git"
+  },
+  "homepage": "https://github.com/mattdesl/glsl-fxaa",
+  "bugs": {
+    "url": "https://github.com/mattdesl/glsl-fxaa/issues"
+  },
+  "keywords": [
+    "glslify",
+    "glsl",
+    "webgl",
+    "gl",
+    "fxaa",
+    "anti",
+    "alias",
+    "aliasing",
+    "aa",
+    "anti-alias",
+    "msaa",
+    "anti-aliasing"
+  ],
+  "browserify": {
+    "transform": [
+      "glslify"
+    ]
+  }
+}
