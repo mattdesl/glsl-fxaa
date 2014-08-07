@@ -1,6 +1,6 @@
 {
   "name": "glsl-fxaa",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "FXAA implementation for glslify in WebGL",
   "main": "index.glsl",
   "license": "MIT",
