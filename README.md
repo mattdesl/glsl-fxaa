@@ -66,7 +66,7 @@ varying vec2 v_rgbM;
 
 uniform vec2 resolution;
 
-#pragma glslify: fxaa = require(../fxaa.glsl)
+#pragma glslify: fxaa = require(glsl-fxaa/fxaa.glsl)
 
 void main() {
     //can also use gl_FragCoord.xy
