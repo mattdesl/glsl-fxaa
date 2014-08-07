@@ -27,7 +27,7 @@ void main() {
 ```fxaa(sampler2D tex, vec2 fragCoord, vec2 resolution)```
 
 
-### optimized
+### optimizing
 
 The above FXAA shader uses 9 dependent texture reads. For various mobile GPUs (particularly iOS), we can optimize the shader by making 5 of the texture2D calls non-dependent. To do this, the coordinates have to be computed in the vertex shader and passed along:
 
