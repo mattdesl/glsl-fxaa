@@ -28,7 +28,6 @@ void main() {
 }
 ```
 
-
 ### optimizing
 
 The above FXAA shader uses 9 dependent texture reads. For various mobile GPUs (particularly iOS), we can optimize the shader by making 5 of the texture2D calls non-dependent. To do this, the coordinates have to be computed in the vertex shader and passed along:
@@ -76,8 +75,7 @@ void main() {
 }
 ```
 
-This may or may not lead to better performance on certain devices. For the most part; you should just use the simplest `index.glsl` use case. 
-
+In most cases, you should just use the simplest `index.glsl` use case demonstrated earlier. 
 
 ## demo
 
