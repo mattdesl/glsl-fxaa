@@ -24,8 +24,8 @@ var batch = require('kami-batch')(gl)
 //Get the preprocessed source
 var glslify = require('glslify')
 var source = glslify({
-    vertex: './fxaa.vert',
-    fragment: './fxaa.frag',
+    vertex: './simple.vert', //optimized.vert
+    fragment: './simple.frag', //optimized.frag
     sourceOnly: true,
 })
 
@@ -63,7 +63,6 @@ require('domready')(function() {
     
     document.body.appendChild(gl.canvas)
     render()
-
 
     var text = document.createElement("div")
     text.innerHTML = 'click the image to toggle FXAA'

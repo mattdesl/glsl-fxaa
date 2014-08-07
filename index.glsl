@@ -1,4 +1,4 @@
-#pragma glslify: fxaa = require(./frag.glsl)
+#pragma glslify: fxaa = require(./fxaa.glsl)
 #pragma glslify: texcoords = require(./texcoords.glsl)
 
 vec4 apply(sampler2D tex, vec2 fragCoord, vec2 resolution) {
@@ -10,6 +10,7 @@ vec4 apply(sampler2D tex, vec2 fragCoord, vec2 resolution) {
 
 	//compute the texture coords
 	texcoords(fragCoord, resolution, v_rgbNW, v_rgbNE, v_rgbSW, v_rgbSE, v_rgbM);
+	
 	//compute FXAA
 	return fxaa(tex, fragCoord, resolution, v_rgbNW, v_rgbNE, v_rgbSW, v_rgbSE, v_rgbM);
 }

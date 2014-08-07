@@ -10,14 +10,13 @@ uniform sampler2D u_texture0;
 uniform bool enabled;
 
 //import our fxaa shader
-#pragma glslify: fxaa = require(../index.glsl)
+#pragma glslify: fxaa = require(../)
 
 void main() {
     //can also use gl_FragCoord.xy
-    mediump vec2 fragCoord = vTexCoord0 * resolution; 
+    vec2 fragCoord = vTexCoord0 * resolution; 
 
     vec4 color;
-
     if (enabled) {
         color = fxaa(u_texture0, fragCoord, resolution);
     } else {
