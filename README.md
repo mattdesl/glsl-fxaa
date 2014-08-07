@@ -26,8 +26,9 @@ void main() {
 
 ### api
 
-```fxaa(sampler2D tex, vec2 fragCoord, vec2 resolution)```
+```vec4 fxaa(sampler2D tex, vec2 fragCoord, vec2 resolution)```
 
+Returns the anti-aliased color from your frame texture. 
 
 ### optimizing
 
