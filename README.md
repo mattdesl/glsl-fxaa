@@ -29,9 +29,9 @@ void main() {
 
 ### optimizing
 
-If you plan on using FXAA, you may want to disable native anti-aliasing entirely when creating your WebGL context, as it will lead to a performance boost in some browsers. If you are relying on FXAA for anti-aliasing your post-processed scene, then you probably won't be getting native anti-aliasing anyways. 
+If you plan on using FXAA instead of native anti-aliasing (i.e. for post-processed 3D scenes), disabling native AA when creating your WebGL context should give you a performance boost in some browsers.
 
-The above FXAA shader uses 9 dependent texture reads. For various mobile GPUs (particularly iOS), we can optimize the shader by making 5 of the texture2D calls non-dependent. To do this, the coordinates have to be computed in the vertex shader and passed along:
+This FXAA shader uses 9 dependent texture reads. For various mobile GPUs (particularly iOS), we can optimize the shader by making 5 of the texture2D calls non-dependent. To do this, the coordinates have to be computed in the vertex shader and passed along:
 
 vert shader:
 
