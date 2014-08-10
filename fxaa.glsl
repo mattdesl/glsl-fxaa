@@ -63,7 +63,8 @@ vec4 fxaa(sampler2D tex, vec2 fragCoord, vec2 resolution,
     vec3 rgbNE = texture2D(tex, v_rgbNE).xyz;
     vec3 rgbSW = texture2D(tex, v_rgbSW).xyz;
     vec3 rgbSE = texture2D(tex, v_rgbSE).xyz;
-    vec3 rgbM  = texture2D(tex, v_rgbM).xyz;
+    vec4 texColor = texture2D(tex, v_rgbM);
+    vec3 rgbM  = texColor.xyz;
     vec3 luma = vec3(0.299, 0.587, 0.114);
     float lumaNW = dot(rgbNW, luma);
     float lumaNE = dot(rgbNE, luma);
@@ -94,9 +95,9 @@ vec4 fxaa(sampler2D tex, vec2 fragCoord, vec2 resolution,
 
     float lumaB = dot(rgbB, luma);
     if ((lumaB < lumaMin) || (lumaB > lumaMax))
-        color = vec4(rgbA, 1.0);
+        color = vec4(rgbA, texColor.a);
     else
-        color = vec4(rgbB, 1.0);
+        color = vec4(rgbB, texColor.a);
     return color;
 }
 
