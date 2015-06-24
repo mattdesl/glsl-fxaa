@@ -1,5 +1,5 @@
-#pragma glslify: fxaa = require(./fxaa.glsl)
-#pragma glslify: texcoords = require(./texcoords.glsl)
+#pragma glslify: fxaa = require('./fxaa.glsl')
+#pragma glslify: texcoords = require('./texcoords.glsl')
 
 vec4 apply(sampler2D tex, vec2 fragCoord, vec2 resolution) {
 	mediump vec2 v_rgbNW;

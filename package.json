@@ -5,23 +5,20 @@
   "main": "index.glsl",
   "license": "MIT",
   "author": "Matt DesLauriers <dave.des@gmail.com>",
-  "dependencies": {
-    "glslify": "^1.6.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "add-event-listener": "0.0.1",
-    "baboon-image": "^1.0.0",
-    "dom-style": "0.0.2",
-    "domready": "^1.0.5",
-    "gl-clear": "0.0.1",
-    "kami-batch": "^2.0.4",
-    "kami-shader": "^1.1.0",
-    "kami-texture": "^1.1.0",
-    "tape": "~2.13.2",
-    "webgl-context": "^1.2.1"
+    "a-big-triangle": "^1.0.2",
+    "browserify": "^10.2.4",
+    "gl-shader": "^4.0.5",
+    "gl-texture2d": "^2.0.9",
+    "glslify": "^2.2.1",
+    "img": "^1.0.0",
+    "uglify-js": "^2.4.23",
+    "webgl-context": "^2.2.0"
   },
   "scripts": {
-    "test": "tape test.js"
+    "start": "budo demo/index.js:bundle.js --dir demo --live --verbose -- -t glslify | garnish",
+    "build": "browserify demo/index.js -t glslify | uglifyjs -cm > demo/bundle.js"
   },
   "testling": {
     "files": "test.js",
@@ -57,10 +54,5 @@
     "anti-alias",
     "msaa",
     "anti-aliasing"
-  ],
-  "browserify": {
-    "transform": [
-      "glslify"
-    ]
-  }
+  ]
 }

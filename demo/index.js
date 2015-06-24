@@ -1,76 +1,54 @@
-var baboon = require('baboon-image')
-var addEvent = require('add-event-listener')
-var style = require('dom-style')
-var clear = require('gl-clear')({ color: [1,1,1,1] })
+var createShader = require('gl-shader')
+var createTexture = require('gl-texture2d')
+var triangle = require('a-big-triangle')
+var glslify = require('glslify')
+var loadImage = require('img')
 
-var size = {
-    width: baboon.shape[1],
-    height: baboon.shape[0]
+var gl = require('webgl-context')({
+  width: 512,
+  height: 512,
+  antialias: false
+})
+var canvas = gl.canvas
+document.body.appendChild(canvas)
+
+var texture
+var enabled = true
+
+//try replacing this with 'optimized.vert' and 'optimized.frag'
+var shader = createShader(gl, glslify('./simple.vert'), glslify('./simple.frag'))
+shader.bind()
+shader.uniforms.iResolution = [ canvas.width, canvas.height ]
+shader.uniforms.iChannel0 = 0
+shader.uniforms.enabled = enabled
+
+loadImage('screen.png', function (err, image) {
+  if (err) throw err
+  texture = createTexture(gl, image)
+  texture.minFilter = gl.LINEAR
+  texture.magFilter = gl.LINEAR
+  render()
+})
+
+function render () {
+  var width = gl.drawingBufferWidth
+  var height = gl.drawingBufferHeight
+  gl.viewport(0, 0, width, height)
+
+  texture.bind()
+  shader.bind()
+  triangle(gl)
 }
 
-//grab WebGL context with size
-var gl = require('webgl-context')(size)
+function click (ev) {
+  enabled = !enabled
+  shader.uniforms.enabled = enabled
+  render()
+}
 
-//A quick and dirty way of wrapping ndarray as kami-texture
-var tex = require('kami-texture')(gl, {
-    width: size.width,
-    height: size.height,
-    data: new Uint8Array(baboon.data)
-})
-
-//setup a sprite batcher
-var batch = require('kami-batch')(gl)
-
-//Get the preprocessed source
-var glslify = require('glslify')
-var source = glslify({
-    vertex: './simple.vert', //optimized.vert
-    fragment: './simple.frag', //optimized.frag
-    sourceOnly: true,
-})
-
-//And compile it as a shader
-var shader = require('kami-shader')(gl, source)
-
-require('domready')(function() {
-    var enabled = true
-
-    function toggle(ev) {
-        ev.preventDefault()
-        enabled = !enabled
-        render()
-    }
-
-    function render() {
-        //clear GL canvas
-        clear(gl)
-
-        //setup viewport
-        gl.viewport(0, 0, size.width, size.height)
-        batch.resize(size.width, size.height)
-
-        //bind our shader
-        batch.begin()
-        batch.shader = shader
-
-        //after starting the batch, we can set our uniform values
-        batch.shader.setUniformf("resolution", size.width, size.height)
-        batch.shader.setUniformi("enabled", enabled)
-
-        batch.draw(tex)
-        batch.end()    
-    }
-    
-    document.body.appendChild(gl.canvas)
-    render()
-
-    var text = document.createElement("div")
-    text.innerHTML = 'click the image to toggle FXAA'
-
-    addEvent(gl.canvas, "touchdown", toggle)
-    addEvent(gl.canvas, "mousedown", toggle)
-
-    document.body.appendChild(text)
-    style(document.body, { margin: '0', fontFamily: "'Helvetica', sans-serif" })
-    style(text, { margin: '15px' })
+window.addEventListener('click', click)
+window.addEventListener('touchstart', function (ev) {
+  window.removeEventListener('click', click)
+  ev.preventDefault()
+  click()
 })
