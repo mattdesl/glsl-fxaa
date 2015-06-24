@@ -2,6 +2,8 @@
 
 [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
 
+[(demo)](http://mattdesl.github.io/glsl-fxaa/demo) - [(source)](./demo/index.js)
+
 A WebGL implementation of Fast Approximate Anti-Aliasing (FXAA v2). This is a screen-space technique. The code was originally from [Geeks3D.com](http://www.geeks3d.com/20110405/fxaa-fast-approximate-anti-aliasing-demo-glsl-opengl-test-radeon-geforce/) and cleaned up by [Armin Ronacher](https://github.com/mitsuhiko/webgl-meincraft) for WebGL. 
 
 FXAA is particularly useful in WebGL since most browsers do not currently support MSAA, and even those that do (e.g. Chrome) will not support it outside of the main frame buffer (which is common when doing post-processing effects like color grading).
@@ -80,9 +82,20 @@ In most cases, you should just use the simplest `index.glsl` use case demonstrat
 
 ## demo
 
-See the [demo](demo/) folder. To run with beefy:
+See the [demo](demo/) folder. To run:
 
-```beefy demo/index.js --open```
+```sh
+# clone repo
+git clone https://github.com/mattdesl/glsl-fxaa.git
+
+# install deps
+npm install
+
+# run local host
+npm start
+```
+
+Now open `localhost:9966` to test. Use `npm run build` to build a bundle.
 
 ## License
 
