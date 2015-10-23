@@ -19,7 +19,7 @@
     "webgl-context": "^2.2.0"
   },
   "scripts": {
-    "start": "budo demo/index.js:bundle.js --dir demo --live --verbose -- -t glslify | garnish",
+    "start": "budo demo/index.js:bundle.js --dir demo --live -- -t glslify | garnish",
     "build": "browserify demo/index.js -t glslify | uglifyjs -cm > demo/bundle.js"
   },
   "testling": {
