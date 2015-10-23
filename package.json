@@ -9,6 +9,8 @@
   "devDependencies": {
     "a-big-triangle": "^1.0.2",
     "browserify": "^10.2.4",
+    "budo": "^5.1.5",
+    "garnish": "^3.2.1",
     "gl-shader": "^4.0.5",
     "gl-texture2d": "^2.0.9",
     "glslify": "^2.2.1",
